@@ -128,6 +128,18 @@ dataset_base = Config({
     'label_map': None
 })
 
+card_dataset = dataset_base.copy({
+    'name': 'My Dataset',
+
+    'train_images': '/content/drive/MyDrive/Colab Notebooks/card_dataset/yolact/train/images',
+    'train_info':   '/content/drive/MyDrive/Colab Notebooks/card_dataset/yolact/train/annotations.json',
+
+    'valid_images': '/content/drive/MyDrive/Colab Notebooks/card_dataset/yolact/val/images',
+    'valid_info':   '/content/drive/MyDrive/Colab Notebooks/card_dataset/yolact/val/annotations.json',
+    'has_gt': True,
+    'class_names': ('card')
+})
+
 coco2014_dataset = dataset_base.copy({
     'name': 'COCO 2014',
     
@@ -657,15 +669,15 @@ yolact_base_config = coco_base_config.copy({
     'name': 'yolact_base',
 
     # Dataset stuff
-    'dataset': coco2017_dataset,
-    'num_classes': len(coco2017_dataset.class_names) + 1,
+    'dataset': card_dataset,
+    'num_classes': len(card_dataset.class_names) + 1,
 
     # Image Size
-    'max_size': 550,
+    'max_size': 640,
     
     # Training params
-    'lr_steps': (280000, 600000, 700000, 750000),
-    'max_iter': 800000,
+    'lr_steps': (60000, 100000),
+    'max_iter': 120000,
     
     # Backbone Settings
     'backbone': resnet101_backbone.copy({
