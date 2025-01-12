@@ -117,6 +117,9 @@ class SavePath:
         
         if file_name.endswith('.pth'):
             file_name = file_name[:-4]
+
+        if file_name.endswith('.onnx'):
+            file_name = file_name[:-5]            
         
         params = file_name.split('_')
 
